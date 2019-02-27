@@ -14,5 +14,3 @@ build/
 .mypy_cache
 .vscode
 pyproject.lock
-
-iup_server/content
