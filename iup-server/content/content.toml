@@ -1,0 +1,30 @@
+"title"="InvisibleUp"
+"dir"="/"
+"handler"="TemplateHandler"
+
+[About]
+"title"="About"
+"dir"="/about"
+"handler"="MarkdownHandler"
+
+[Articles]
+"title"="Articles"
+"dir"="/articles"
+"handler"="TemplateHandler"
+
+[Articles.1]
+"title"="Input Oddities"
+"series"="Windows 95 UX"
+"dir"="/articles/1"
+"handler"="MarkdownHandler"
+
+[Articles.5]
+"title"="Beautiful Decay of AOL"
+"series"="AOL"
+"dir"="/articles/5"
+"handler"="MarkdownHandler"
+
+[Articles.12]
+"title"="Ninty Switch Stuff"
+"dir"="/articles/12"
+"handler"="MarkdownHandler"
