@@ -6,6 +6,31 @@ from flask import render_template_string
 
 from ..sitepage import SitePage
 
+def MarkdownRunner(sitepage, template_path, breadcrumb, pathdepth, siblings, subpages, parent):
+    try:
+        with sitepage.app.open_resource(
+            'content' + template_path, mode='r'
+        ) as f:
+            template = f.read()
+    except FileNotFoundError:
+        logging.exception('Content file not found')
+        return
+
+    template = (
+        "{% include '_header.html' %}\n"
+        + markdown.markdown(template)
+        + "\n{% include '_footer.html' %}"
+    )
+
+    return render_template_string(
+        source=template,
+        breadcrumb=breadcrumb,
+        pathdepth=pathdepth,
+        siblings=sitepage.siblings,
+        subpages=sitepage.subpages,
+        parent=sitepage.parent
+    )
+
 
 def MarkdownHandler(sitepage: SitePage):
     page = sitepage.page
@@ -16,23 +41,13 @@ def MarkdownHandler(sitepage: SitePage):
     bc = sitepage.get_breadcrumb(sitepage.pagesdict, sitepage.dictpath)
     pd = sitepage.get_path_depth()
 
-    try:
-        with sitepage.app.open_resource(
-            'content' + template_path, mode='r'
-        ) as f:
-            template = f.read()
-    except FileNotFoundError:
-        logging.exception('Content file not found')
-        return
-
-    template = markdown.markdown(template)
-
     sitepage.app.add_url_rule(
         rule=page['dir'] + '/',
         endpoint='/'.join(bc) + '/',
         view_func=functools.partial(
-            render_template_string,
-            template,
+            MarkdownRunner,
+            sitepage=sitepage,
+            template_path=template_path,
             breadcrumb=bc,
             pathdepth=pd,
             siblings=sitepage.siblings,
