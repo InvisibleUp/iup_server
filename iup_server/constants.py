@@ -1,1 +1,1 @@
-PAGEATTRIBS = ['title', 'series', 'dir', 'handler', 'template']
+PAGEATTRIBS = ['title', 'series', 'dir', 'handler', 'template', 'date']

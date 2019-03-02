@@ -2,7 +2,7 @@ from datetime import datetime
 import os
 import typing as t
 
-from flask import Flask
+from flask import Flask, send_file
 import toml
 
 from .constants import PAGEATTRIBS
@@ -58,5 +58,10 @@ def create_app(test_config=None):
     with app.open_resource('content/content.toml', mode='r') as f:
         pages = toml.load(f)
     register_pages(app, pages, [])
+
+    # Add favicon definition, because it is special
+    @app.route('/favicon.ico')
+    def route_favicon():
+        return send_file('static/favicon.ico')
 
     return app
