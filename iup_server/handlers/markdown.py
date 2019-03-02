@@ -6,7 +6,7 @@ from flask import render_template_string
 
 from ..sitepage import SitePage
 
-def MarkdownRunner(sitepage, template_path, breadcrumb, pathdepth, siblings, subpages, parent):
+def MarkdownRunner(sitepage, template_path, breadcrumb, pathdepth):
     try:
         with sitepage.app.open_resource(
             'content' + template_path, mode='r'
@@ -24,11 +24,9 @@ def MarkdownRunner(sitepage, template_path, breadcrumb, pathdepth, siblings, sub
 
     return render_template_string(
         source=template,
+        sp=sitepage,
         breadcrumb=breadcrumb,
         pathdepth=pathdepth,
-        siblings=sitepage.siblings,
-        subpages=sitepage.subpages,
-        parent=sitepage.parent
     )
 
 
@@ -49,9 +47,6 @@ def MarkdownHandler(sitepage: SitePage):
             sitepage=sitepage,
             template_path=template_path,
             breadcrumb=bc,
-            pathdepth=pd,
-            siblings=sitepage.siblings,
-            subpages=sitepage.subpages,
-            parent=sitepage.parent,
+            pathdepth=pd
         ),
     )
