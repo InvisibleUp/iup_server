@@ -41,7 +41,7 @@ class SitePage:
 
     def get_breadcrumb(self, pages, path, bc=None) -> t.List[str]:
         if bc == None:
-            bc = []
+            bc = ['Home']
 
         if len(path) > 0:
             subpage = pages[path[0]]

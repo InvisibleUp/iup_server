@@ -6,8 +6,6 @@ from flask import send_from_directory, abort
 from ..sitepage import SitePage
 
 def send_dir_contents(dir: str, path: str):
-    if '.html' in path:
-        abort(404)
     return send_from_directory('content' + dir, path)
 
 def load_raw_template(

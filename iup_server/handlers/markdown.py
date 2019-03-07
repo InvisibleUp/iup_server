@@ -10,7 +10,7 @@ def markdown_runner(sitepage, template_path, breadcrumb, pathdepth):
     template = common.load_raw_template(sitepage, template_path)
     template = (
         "{% include '_header.html' %}\n"
-        + markdown.markdown(template)
+        + markdown.markdown(template, extensions=['extra'])
         + "\n{% include '_footer.html' %}"
     )
 

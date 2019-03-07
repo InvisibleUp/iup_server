@@ -2,7 +2,7 @@ from datetime import datetime
 import os
 import typing as t
 
-from flask import Flask, send_file
+from flask import Flask, send_file, render_template
 import toml
 
 from .constants import PAGEATTRIBS
@@ -63,5 +63,10 @@ def create_app(test_config=None):
     @app.route('/favicon.ico')
     def route_favicon():
         return send_file('static/favicon.ico')
+
+    # Add error handlers
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('404.html'), 404
 
     return app
