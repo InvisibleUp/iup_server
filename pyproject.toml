@@ -11,6 +11,7 @@ jinja2 = "^2.10"
 toml = "^0.10.0"
 markdown = "^3.0"
 gunicorn = "^19.9"
+flask-gopher = "^2.1"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.670.0"
