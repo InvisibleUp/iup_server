@@ -16,7 +16,7 @@ def markdown_runner(sitepage, template_path, breadcrumb, pathdepth):
         E.fromstring('<root>' + template + '</root>', E.HTMLParser()),
         request.path, sitepage.gopher.width
     )
-    if sitepage.gopher:
+    if request.scheme == 'gopher':
         return sitepage.gopher.render_menu_template(
             'layout.gopher',
             body=template,

@@ -30,7 +30,7 @@ def register_pages(app, gopher, pagesdict, path, page=None):
         register_pages(app, gopher, pagesdict, path + [name], sp)
 
 
-def create_app(test_config=None):
+def create_app(test_config=None, gophermode=False):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
@@ -38,7 +38,6 @@ def create_app(test_config=None):
     )
 
     gopher = GopherExtension(app)
-    #gopher = None
 
     # ensure the instance folder exists
     try:

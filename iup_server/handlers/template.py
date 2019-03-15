@@ -11,7 +11,7 @@ from . import common
 def template_runner(sitepage, template_path, breadcrumb, pathdepth):
     template: str = common.load_raw_template(sitepage, template_path)
 
-    if sitepage.gopher:
+    if request.scheme == 'gopher':
         template = template[template.find('\n')+1:template.rfind('\n')]
         template = render_template_string(
             source=template,
