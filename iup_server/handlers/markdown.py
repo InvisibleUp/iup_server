@@ -23,6 +23,7 @@ def markdown_runner(sitepage, template_path, breadcrumb, pathdepth):
             sp=sitepage,
             breadcrumb=breadcrumb,
             pathdepth=pathdepth,
+            distro=distro
         )
 
     template = (
@@ -36,7 +37,6 @@ def markdown_runner(sitepage, template_path, breadcrumb, pathdepth):
         sp=sitepage,
         breadcrumb=breadcrumb,
         pathdepth=pathdepth,
-        distro=distro
     )
 
 def MarkdownHandler(sitepage: SitePage):

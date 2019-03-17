@@ -23,8 +23,8 @@ POSTFIXES = {
     'br': '\n',
 }
 
-DOMAIN = 'localhost'
-PORT = '5000'
+DOMAIN = 'invisibleup.com'
+PORT = '70'
 
 def fix_path(basepath, path):
     if path.startswith(basepath):

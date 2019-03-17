@@ -30,12 +30,9 @@ def register_pages(app, gopher, pagesdict, path, page=None):
         register_pages(app, gopher, pagesdict, path + [name], sp)
 
 
-def create_app(test_config=None, gophermode=False):
+def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY='dev',
-    )
 
     gopher = GopherExtension(app)
 
