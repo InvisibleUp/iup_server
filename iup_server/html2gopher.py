@@ -64,6 +64,16 @@ def a_tag(tag, basepath):
     if 'http' in path:
         # External HTTP link
         return f'h{tag.text}\tURL:{path}\t{DOMAIN}\t{PORT}\n'
+    elif 'gopher://' in path:
+        # External Gopher link
+        splitted = path.split('/')
+        try:
+            domain, port = splitted[2].split(':')
+        except ValueError:
+            domain = splitted[2]
+            port = '70'
+        path = '/'.join(splitted[3:])
+        return f'1{tag.text}\t{path}\t{domain}\t{port}\n'
     elif '.png' in path or '.jpg' in path or '.gif' in path:
         # Image
         path = fix_path(basepath, path)
