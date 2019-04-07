@@ -9,6 +9,7 @@ import toml
 from .constants import PAGEATTRIBS
 from .sitepage import SitePage
 from .handlers import HANDLERS
+from .atom import generate_atom
 
 
 def register_pages(app, gopher, pagesdict, path, page=None):
@@ -61,5 +62,10 @@ def create_app(test_config=None):
     @app.errorhandler(404)
     def page_not_found(e):
         return render_template('404.html'), 404
+
+    # Add Atom/RSS feed
+    @app.route('/atom.xml')
+    def route_atom():
+        return generate_atom(pages)
 
     return app
