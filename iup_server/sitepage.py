@@ -16,11 +16,12 @@ class SitePage:
     parent: t.Optional[t.Dict[str, t.Any]]
     siblings: t.List[t.Dict[str, t.Any]]
 
-    def __init__(self, handler, pagesdict, dictpath, app):
+    def __init__(self, handler, pagesdict, dictpath, app, gopher):
         self.handler = handler
         self.pagesdict = pagesdict
         self.dictpath = dictpath
         self.app = app
+        self.gopher = gopher
 
         self.page = helpers.subdict_from_key_list(pagesdict, dictpath)
         subpage_indices = list(
@@ -41,12 +42,12 @@ class SitePage:
 
     def get_breadcrumb(self, pages, path, bc=None) -> t.List[str]:
         if bc == None:
-            bc = ['Home']
+            bc = ['InvisibleUp']
 
         if len(path) > 0:
             subpage = pages[path[0]]
             if subpage['title']:
-                bc.append(subpage['title'])
+                bc.insert(0, subpage['title'])
             return self.get_breadcrumb(subpage, path[1:], bc)
         else:
             return bc
